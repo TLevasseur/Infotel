@@ -1,22 +1,66 @@
 <LISTEDEFLUX>
+
 	<FLUX>
-		<NOM></NOM>
+		<NOM>Les annonces du BDE</NOM>
 		<LISTEDEMESSAGES>
 
 			<MESSAGE>
-				<SOURCE></SOURCE> <TITRE></TITRE> <DATE></DATE>
+				<SOURCE>Pole communication</SOURCE> <TITRE>Construction d'une fontaine de chocolat</TITRE> <DATE>07/09/2015</DATE>
 				<INFOS>
-
+					Bonjour
+					Suite à la recette exceptionnelle de cette année, nous allons construire une fontaine de chocolat en septembre.
 				</INFOS>
 			</MESSAGE>
 
 			<MESSAGE>
-				<SOURCE></SOURCE> <TITRE></TITRE> <DATE></DATE>
+				<SOURCE>Direction</SOURCE> <TITRE>Faillite</TITRE> <DATE>03/03/2015</DATE>
 				<INFOS>
-
+					Bonjour
+					Le BDE est à la rue depuis un mois.
 				</INFOS>
 			</MESSAGE>
 
 		</LISTEDEMESSAGES>
 	</FLUX>
+
+	<FLUX>
+		<NOM>Menu de la Cantine</NOM>
+		<LISTEDEMESSAGES>
+
+			<MESSAGE>
+				<SOURCE>Monique de la cuisine</SOURCE> <TITRE>Menu de demain</TITRE> <DATE>07/02/2015</DATE>
+				<INFOS>
+					Bonjour
+					Ce mardi, nous aurons pour déjeuner du poulet aux olives.
+				</INFOS>
+			</MESSAGE>
+
+			<MESSAGE>
+				<SOURCE>Monique de la cuisine</SOURCE> <TITRE>Menu de ce midi</TITRE> <DATE>02/03/2015</DATE>
+				<INFOS>
+					Bonjour
+					Ce lundi, nous aurons pour déjeuner du boudain noir.
+				</INFOS>
+			</MESSAGE>
+
+		</LISTEDEMESSAGES>
+	</FLUX>
+
+</LISTEDEFLUX>
+
+	<FLUX>
+		<NOM>Absence de personnel</NOM>
+		<LISTEDEMESSAGES>
+
+			<MESSAGE>
+				<SOURCE>Secrétariat</SOURCE> <TITRE>Absence de Mme Dupond</TITRE> <DATE>07/02/2015</DATE>
+				<INFOS>
+					Bonjour
+					Mme Dupond sera absente aujourd'hui.
+				</INFOS>
+			</MESSAGE>
+
+		</LISTEDEMESSAGES>
+	</FLUX>
+
 </LISTEDEFLUX>
