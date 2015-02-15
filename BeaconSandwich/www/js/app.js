@@ -54,3 +54,14 @@
   });
 })();
 
+//      <!--Récupération des flux cochés-->
+//      <script>
+//        var checkedValue = [];
+//        var inputElements = document.getElementsByClassName('fluxCheckbox');
+//        for(var i=0; inputElements[i]; ++i){
+//          if(inputElements[i].checked){
+//            checkedValue[i] = inputElements[i].value;
+//            break;
+//          }
+//        }
+//      </script>
