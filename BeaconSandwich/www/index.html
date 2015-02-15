@@ -33,23 +33,49 @@
         </div>
       </ons-toolbar>
       
-      <ons-list>
-        <ons-list-item modifier="chevron" onclick="myNavigator.pushPage('flux1.html', { animation : 'slide' } )">
-          Flux1
+      <ons-list ng-controller="MasterController">
+        <ons-list-item modifier="chevron" class="item" ng-repeat="item in LISTEDEFLUX" ng-click="showDetail($index)">
+          <ons-row>
+            <ons-col width="60px"> 
+              <div class="item-thum"></div>
+            </ons-col>
+            <ons-col>
+              <header>
+          <span class="item-titre">{{item.NOM}}</span>
+              </header>
+            </ons-col>
+          </ons-row>   
         </ons-list-item>
       </ons-list>
     </ons-page>
   </ons-navigator>
 
   <ons-template id="flux1.html">
-    <ons-page>
+    <ons-page ng-controller="DetailController">
       <!--Barre de navigation-->
       <ons-toolbar>
         <div class="left"><ons-back-button>Retour</ons-back-button></div>
-        <div class="center">Flux1</div>
+        <div class="center">{{item.NOM}}</div>
       </ons-toolbar>
-      <div style="text-align: center; margin-top: 100px;">
-      </div>
+    
+
+      <ons-list modifier="inset" ng-repeat="itemm in item.LISTEDEMESSAGES" style="margin-top: 10px">
+        <ons-list-item class="item">
+          <ons-row>
+            <ons-col width="60px"> 
+              <div class="item-thum"></div>
+            </ons-col>
+            <ons-col>
+              <header>
+                <span class='item-titre'>{{itemm.TITRE}}</span>
+                <span class='item-date'>{{itemm.DATE}}</span><br/>
+                <span class='item-source'>de: {{itemm.SOURCE}}</span>
+              </header>
+              <p class='item-infos'>{{itemm.INFOS}}</p>
+            </ons-col>
+          </ons-row>
+        </ons-list-item>
+      </ons-list>
     </ons-page>
   </ons-template>
 
