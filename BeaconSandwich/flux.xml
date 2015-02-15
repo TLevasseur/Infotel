@@ -1,0 +1,22 @@
+<LISTEDEFLUX>
+	<FLUX>
+		<NOM></NOM>
+		<MESSAGES>
+
+			<MESSAGE>
+				<SOURCE></SOURCE> <TITRE></TITRE> <DATE></DATE>
+				<INFOS>
+
+				</INFOS>
+			</MESSAGE>
+
+			<MESSAGE>
+				<SOURCE></SOURCE> <TITRE></TITRE> <DATE></DATE>
+				<INFOS>
+
+				</INFOS>
+			</MESSAGE>
+
+		</MESSAGES>
+	</FLUX>
+</LISTEDEFLUX>
