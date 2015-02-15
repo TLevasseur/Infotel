@@ -1,0 +1,29 @@
+<html>
+<head>
+  	<meta charset="utf-8">
+	<title>test</title>
+	<script src="jquery.js"></script>
+	<script src="test.js"></script>
+</head>
+<body>
+	<script>
+		var xhr = createXHR();
+  
+		var script = "http://levasseur.tf/beaconsandwich/flux.php";
+		var filename = "http://levasseur.tf/beaconsandwich/flux.xml";	
+		  	
+		xhr.onreadystatechange=function()
+		{ 
+			if(xhr.readyState == 4)
+			{
+				 retrieve(filename);
+			}
+		}; 
+		xhr.open("POST", script, true);		
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhr.send(null); 
+	</script>
+	<div id="storage">
+	</div>
+</body>
+</html>

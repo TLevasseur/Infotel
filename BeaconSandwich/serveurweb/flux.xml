@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<listedeflux>
+
+	<flux>
+		<nom>Les annonces du Bde</nom>
+		<listedemessages>
+
+			<message>
+				<source>Pole communication</source> <titre>Construction d'une fontaine de chocolat</titre> <date>07/09/2015</date><uid>00002</uid>
+				<infos>
+					Bonjour
+					Suite à la recette exceptionnelle de cette année, nous allons construire une fontaine de chocolat en septembre.
+				</infos>
+			</message>
+
+			<message>
+				<source>Direction</source> <titre>Faillite</titre> <date>03/03/2015</date><uid>00002</uid>
+				<infos>
+					Bonjour
+					Le Bde est à la rue depuis un mois.
+				</infos>
+			</message>
+
+		</listedemessages>
+	</flux>
+
+	<flux>
+		<nom>Menu de la Cantine</nom>
+		<listedemessages>
+
+			<message>
+				<source>Monique de la cuisine</source> <titre>Menu de demain</titre> <date>07/02/2015</date> <uid>00001</uid>
+				<infos>
+					Bonjour
+					Ce mardi, nous aurons pour déjeuner du poulet aux olives.
+				</infos>
+			</message>
+
+			<message>
+				<source>Monique de la cuisine</source> <titre>Menu de ce midi</titre> <date>02/03/2015</date> <uid>00001</uid>
+				<infos>
+					Bonjour
+					Ce lundi, nous aurons pour déjeuner du boudain noir.
+				</infos>
+			</message>
+
+		</listedemessages>
+	</flux>
+
+	<flux>
+		<nom>Absence de personnel</nom>
+		<listedemessages>
+
+			<message>
+				<source>Secrétariat</source> <titre>Absence de Mme Dupond</titre> <date>07/02/2015</date> <uid>00002</uid>
+				<infos>
+					Bonjour
+					Mme Dupond sera absente aujourd'hui.
+				</infos>
+			</message>
+
+		</listedemessages>
+	</flux>
+
+</listedeflux>
