@@ -5,7 +5,7 @@
 		<LISTEDEMESSAGES>
 
 			<MESSAGE>
-				<SOURCE>Pole communication</SOURCE> <TITRE>Construction d'une fontaine de chocolat</TITRE> <DATE>07/09/2015</DATE>
+				<SOURCE>Pole communication</SOURCE> <TITRE>Construction d'une fontaine de chocolat</TITRE> <DATE>07/09/2015</DATE><UID>00002</UID>
 				<INFOS>
 					Bonjour
 					Suite à la recette exceptionnelle de cette année, nous allons construire une fontaine de chocolat en septembre.
@@ -13,7 +13,7 @@
 			</MESSAGE>
 
 			<MESSAGE>
-				<SOURCE>Direction</SOURCE> <TITRE>Faillite</TITRE> <DATE>03/03/2015</DATE>
+				<SOURCE>Direction</SOURCE> <TITRE>Faillite</TITRE> <DATE>03/03/2015</DATE><UID>00002</UID>
 				<INFOS>
 					Bonjour
 					Le BDE est à la rue depuis un mois.
@@ -28,7 +28,7 @@
 		<LISTEDEMESSAGES>
 
 			<MESSAGE>
-				<SOURCE>Monique de la cuisine</SOURCE> <TITRE>Menu de demain</TITRE> <DATE>07/02/2015</DATE>
+				<SOURCE>Monique de la cuisine</SOURCE> <TITRE>Menu de demain</TITRE> <DATE>07/02/2015</DATE> <UID>00001</UID>
 				<INFOS>
 					Bonjour
 					Ce mardi, nous aurons pour déjeuner du poulet aux olives.
@@ -36,7 +36,7 @@
 			</MESSAGE>
 
 			<MESSAGE>
-				<SOURCE>Monique de la cuisine</SOURCE> <TITRE>Menu de ce midi</TITRE> <DATE>02/03/2015</DATE>
+				<SOURCE>Monique de la cuisine</SOURCE> <TITRE>Menu de ce midi</TITRE> <DATE>02/03/2015</DATE> <UID>00001</UID>
 				<INFOS>
 					Bonjour
 					Ce lundi, nous aurons pour déjeuner du boudain noir.
@@ -51,7 +51,7 @@
 		<LISTEDEMESSAGES>
 
 			<MESSAGE>
-				<SOURCE>Secrétariat</SOURCE> <TITRE>Absence de Mme Dupond</TITRE> <DATE>07/02/2015</DATE>
+				<SOURCE>Secrétariat</SOURCE> <TITRE>Absence de Mme Dupond</TITRE> <DATE>07/02/2015</DATE> <UID>00002</UID>
 				<INFOS>
 					Bonjour
 					Mme Dupond sera absente aujourd'hui.
