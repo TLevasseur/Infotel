@@ -1,3 +1,6 @@
+
+//Code pour récupérer le petit fichier XML sur le serveur. Ce code est appellé par le script dans test.html
+
 var AjaxCaching = false;
 
 function createXHR() {
@@ -61,6 +64,21 @@ function retrieve(url){
     xhr.send(null); 
 }
 
+
+
+
+
+
+
+//Le code d'interprétation de ce qu'on a obtenu avec les méthodes du dessus
+//création des différents objets et instanciation à la volée
+
+
+
+
+
+
+//Méthodes constructeur pour la sérialisation XML vers objet
 function listeFlux(){
     return {LISTEDEFLUX:new Array(),
             ajouterflux:function(flux){this.LISTEDEFLUX.push(flux);}
@@ -80,6 +98,8 @@ function message(source, titre, date, uid, infos){
     return {TITRE:titre, DATE:date, SOURCE:source, UID:uid, INFOS:infos};
 }
 
+
+//Grosse méthode d'interprétation du fichier XML. bonne traduction ;)
 function dataFromXML(xml){
     var laListeDesFlux=listeFlux();
     var lesFlux = xml.getElementsByTagName("flux");
@@ -105,6 +125,8 @@ function dataFromXML(xml){
     return laListeDesFlux;
 }
 
+
+//fichier description sous console de ce qu'on obtient
 function descriptionConsole(obj){
     console.log(obj);
     console.log(obj.LISTEDEFLUX[0]);
@@ -117,6 +139,7 @@ function descriptionConsole(obj){
     console.log(obj.LISTEDEFLUX[2].LISTEDEMESSAGES[0]);
 
 }
+
 
 function display(content, storage){
     //storage.innerHTML= content.getElementsByTagName("source").item(0).firstChild.data;
