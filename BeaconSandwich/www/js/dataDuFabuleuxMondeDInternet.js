@@ -1,4 +1,36 @@
 
+//stockage dégeu parce que fuck you
+var DATAS;
+
+
+
+
+//fonction pricipales
+function dataDuFabuleuxMondeDInternet(){
+    DATAS=null;
+    var xhr = createXHR();
+  
+    var script = "http://levasseur.tf/beaconsandwich/flux.php";
+    var filename = "http://levasseur.tf/beaconsandwich/flux.xml";   
+           
+    xhr.onreadystatechange=function()
+    { 
+        if(xhr.readyState == 4)
+        {
+             retrieve(filename);
+        }
+    }; 
+        xhr.open("POST", script, false);//requette en asychrone dépréciated wesh     
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(null);
+
+        return DATAS;
+
+}
+
+
+
+
 //Code pour récupérer le petit fichier XML sur le serveur. Ce code est appellé par le script dans test.html
 
 var AjaxCaching = false;
@@ -52,15 +84,16 @@ function retrieve(url){
             {
                 var     content = xhr.responseXML;
                 var lesFlux=dataFromXML(content);
-                descriptionConsole(lesFlux);
-                display(lesFlux, storage);
+                DATAS=lesFlux;
+                //descriptionConsole(lesFlux);
+                //display(lesFlux, storage);
             }
         }
     }; 
 
     if(AjaxCaching == false)
         url = url + "?nocache=" + Math.random();
-    xhr.open("GET", url , true);
+    xhr.open("GET", url , false);
     xhr.send(null); 
 }
 
@@ -144,5 +177,7 @@ function descriptionConsole(obj){
 function display(content, storage){
     //storage.innerHTML= content.getElementsByTagName("source").item(0).firstChild.data;
     storage.innerHTML= content.LISTEDEFLUX[0].LISTEDEMESSAGES[0].INFOS;
+    console.log("lol");
+    console.log(content.LISTEDEFLUX[0].LISTEDEMESSAGES[0].INFOS);
 }
 
