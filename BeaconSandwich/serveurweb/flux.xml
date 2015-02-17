@@ -61,4 +61,27 @@
 		</listedemessages>
 	</flux>
 
+
+	<flux>
+		<nom>Actu Beacon Sandwich</nom>
+		<listedemessages>
+
+			<message>
+				<source>Thibaud</source> <titre>Pensée philosophique</titre> <date>16/02/2015</date> <uid>00002</uid>
+				<infos>
+					Le beacon c'est bon.
+				</infos>
+			</message>
+			<message>
+				<source>Thibaud</source> <titre>On fait du gros test d'appli</titre> <date>16/02/2015</date> <uid>00002</uid>
+				<infos>
+					Il semblerait que guillaume ait fait du bon boulot après tout.
+				</infos>
+			</message>
+
+		</listedemessages>
+	</flux>
+
+
+
 </listedeflux>
