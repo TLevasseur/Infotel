@@ -1,0 +1,3 @@
+https://phpmyadmin.ovh.net/index.php
+levasseurtadmin.mysql.db
+levasseurtadmin
