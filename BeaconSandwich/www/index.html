@@ -5,17 +5,17 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
 
-  <title>BeaconSandwich</title>  
-  
-  <link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
-  <link rel="stylesheet" href="styles/onsen-css-components-blue-basic-theme.css">  
+  <title>BeaconSandwich</title>
+
+  <link rel="stylesheet" href="lib/onsen/css/onsenui.css">
+  <link rel="stylesheet" href="styles/onsen-css-components-blue-basic-theme.css">
   <link rel="stylesheet" type="text/css" href="styles/app.css">
-  <script src="lib/onsen/js/angular/angular.js"></script>    
-  <script src="lib/onsen/js/onsenui.js"></script>    
-  
-  <script src="cordova.js"></script>  
+  <script src="lib/onsen/js/angular/angular.js"></script>
+  <script src="lib/onsen/js/onsenui.js"></script>
+
+  <script src="cordova.js"></script>
   <script src="js/jquery.js"></script>
-  <script src="js/app.js"></script>  
+  <script src="js/app.js"></script>
 
   <script>
     ons.ready(function() {
@@ -23,7 +23,7 @@
   </script>
 </head>
 
-<body ng-controller="AppController">    
+<body ng-controller="AppController">
 
   <ons-navigator title="Navigator" var="myNavigator">
     <ons-page>
@@ -33,11 +33,11 @@
           <ons-toolbar-button onclick="myNavigator.pushPage('parametres.html', { animation : 'lift' } )"><ons-icon icon="ion-gear-a" style="vertical-align: -4px; font-size: 28px;"></ons-icon></ons-toolbar-button>
         </div>
       </ons-toolbar>
-      
+
       <ons-list ng-controller="MasterController">
         <ons-list-item modifier="chevron" class="item" ng-repeat="item in LISTEDEFLUX" ng-click="showDetail($index)">
           <ons-row>
-            <ons-col width="60px"> 
+            <ons-col width="60px">
               <div class="item-thum"></div>
             </ons-col>
             <ons-col>
@@ -45,7 +45,7 @@
           <span class="item-titre">{{item.NOM}}</span>
               </header>
             </ons-col>
-          </ons-row>   
+          </ons-row>
         </ons-list-item>
       </ons-list>
     </ons-page>
@@ -58,21 +58,21 @@
         <div class="left"><ons-back-button>Retour</ons-back-button></div>
         <div class="center">{{item.NOM}}</div>
       </ons-toolbar>
-    
 
-      <ons-list modifier="inset" ng-repeat="itemm in item.LISTEDEMESSAGES" style="margin-top: 10px">
+
+      <ons-list modifier="inset" ng-repeat="msg in item.LISTEDEMESSAGES" style="margin-top: 10px">
         <ons-list-item class="item">
           <ons-row>
-            <ons-col width="60px"> 
+            <ons-col width="60px">
               <div class="item-thum"></div>
             </ons-col>
             <ons-col>
               <header>
-                <span class='item-titre'>{{itemm.TITRE}}</span>
-                <span class='item-date'>{{itemm.DATE}}</span><br/>
-                <span class='item-source'>de: {{itemm.SOURCE}}</span>
+                <span class='item-titre'>{{msg.TITRE}}</span>
+                <span class='item-date'>{{msg.DATE}}</span><br/>
+                <span class='item-source'>de: {{msg.SOURCE}}</span>
               </header>
-              <p class='item-infos'>{{itemm.INFOS}}</p>
+              <p class='item-infos'>{{msg.INFOS}}</p>
             </ons-col>
           </ons-row>
         </ons-list-item>
@@ -81,28 +81,28 @@
   </ons-template>
 
 <ons-template id="parametres.html">
-    <ons-page>
+    <ons-page ng-controller="MasterController">
       <!--Barre de navigation-->
       <ons-toolbar>
         <div class="left"><ons-back-button>Retour</ons-back-button></div>
         <div class="center">Parametres</div>
       </ons-toolbar>
-      
+
       <!--Liste des flux proposés-->
       <div style="text-align: top; margin-top: 10px;">
         <ons-list modifier="inset" class="settings-list">
-        <ons-list-item modifier="tappable">
+        <ons-list-item modifier="tappable" class="item" ng-repeat="item in LISTEDEFLUX">
           <label class="checkbox checkbox--list-item fluxCheckbox">
             <input type="checkbox">
             <div class="checkbox__checkmark checkbox--list-item__checkmark"></div>
-            Flux1
+            {{item.NOM}}
           </label>
         </ons-list-item>
       </ons-list>
       </div>
-      
+
     </ons-page>
   </ons-template>
 
-</body>  
+</body>
 </html>

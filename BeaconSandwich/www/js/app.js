@@ -15,8 +15,8 @@
   });
 
   module.controller('MasterController', function($scope, $data) {
-    $scope.LISTEDEFLUX = $data.LISTEDEFLUX;  
-    
+    $scope.LISTEDEFLUX = $data.LISTEDEFLUX;
+
     $scope.showDetail = function(index) {
       var selectedItem = $data.LISTEDEFLUX[index];
       $data.selectedItem = selectedItem;
@@ -25,7 +25,7 @@
   });
 
   module.factory('$data', function() {
-    var data = dataDuFabuleuxMondeDInternet();   
+    var data = dataDuFabuleuxMondeDInternet();
       return data;
     });
 })();
@@ -43,82 +43,13 @@
 //      </script>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /////////////////////////////////////////////////////////////////////////////////
 //
 //
 //
 //
 //
-//            Partie de Thibaud ne pas toucher 
+//            Partie de Thibaud ne pas toucher
 //
 //
 //
@@ -142,18 +73,18 @@ var AjaxCaching = false;
 function dataDuFabuleuxMondeDInternet(){
     DATAS=null;
     var xhr = createXHR();
-  
+
     var script = "http://levasseur.tf/beaconsandwich/flux.php";
-    var filename = "http://levasseur.tf/beaconsandwich/flux.xml";   
-           
+    var filename = "http://levasseur.tf/beaconsandwich/flux.xml";
+
     xhr.onreadystatechange=function()
-    { 
+    {
         if(xhr.readyState == 4)
         {
              retrieve(filename);
         }
-    }; 
-        xhr.open("POST", script, false);//requette en asychrone dépréciated wesh     
+    };
+        xhr.open("POST", script, false);//requette en asychrone dépréciated wesh
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(null);
 
@@ -168,7 +99,7 @@ function dataDuFabuleuxMondeDInternet(){
 //Fonction qui crée des requettes propres quand on a besoin !
 function createXHR() {
     var xhrObj;
-    
+
     if (window.XMLHttpRequest) {
         // branch for native XMLHttpRequest object - Mozilla, IE7
         try {
@@ -178,7 +109,7 @@ function createXHR() {
         }
     } else if (window.createRequest) {
         /* For ICEbrowser -- untested.
-         * per their site 
+         * per their site
          * http://support.icesoft.com/jive/entry.jspa?entryID=471&categoryID=21
          */
         try {
@@ -210,7 +141,7 @@ function retrieve(url){
     var storage = document.getElementById("storage");
     var xhr = createXHR();
     xhr.onreadystatechange=function()
-    { 
+    {
         if(xhr.readyState == 4)
         {
             if(xhr.status == 200)
@@ -222,12 +153,12 @@ function retrieve(url){
                 //display(lesFlux, storage);
             }
         }
-    }; 
+    };
 
     if(AjaxCaching == false)
         url = url + "?nocache=" + Math.random();
     xhr.open("GET", url , false);
-    xhr.send(null); 
+    xhr.send(null);
 }
 
 
@@ -253,7 +184,8 @@ function listeFlux(){
 
 
 function flux(nom){
-    return {NOM:nom, 
+    return {NOM:nom,
+            AFFICHER:true,
             LISTEDEMESSAGES:new Array(),
             ajouterMessage:function(message){this.LISTEDEMESSAGES.push(message);}
             };
@@ -314,4 +246,3 @@ function display(content, storage){
     console.log("lol");
     console.log(content.LISTEDEFLUX[0].LISTEDEMESSAGES[0].INFOS);
 }
-
