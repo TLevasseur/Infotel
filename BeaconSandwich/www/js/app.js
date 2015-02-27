@@ -20,8 +20,13 @@
     $scope.showDetail = function(index) {
       var selectedItem = $data.LISTEDEFLUX[index];
       $data.selectedItem = selectedItem;
-      $scope.ons.navigator.pushPage('flux1.html', {TitreDuFlux : selectedItem.NOM});
+      $scope.ons.navigator.pushPage('flux1.html');
     };
+
+    $scope.toggleSwitch = function(index) {
+      $data.LISTEDEFLUX[index].AFFICHER = $data.LISTEDEFLUX[index].AFFICHER ? false : true ;
+    };
+
   });
 
   module.factory('$data', function() {

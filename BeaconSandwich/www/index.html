@@ -93,7 +93,7 @@
         <ons-list modifier="inset" class="settings-list">
         <ons-list-item modifier="tappable" class="item" ng-repeat="item in LISTEDEFLUX">
           <label class="checkbox checkbox--list-item fluxCheckbox">
-            <input type="checkbox">
+            <input type="checkbox" ng-click="toggleSwitch($index)">
             <div class="checkbox__checkmark checkbox--list-item__checkmark"></div>
             {{item.NOM}}
           </label>
