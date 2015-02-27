@@ -3,11 +3,6 @@
   var module = angular.module('app', ['onsen']);
 
   module.controller('AppController', function($scope, $data) {
-    $scope.doSomething = function() {
-      setTimeout(function() {
-        alert('tappaed');
-      }, 100);
-    };
   });
 
   module.controller('DetailController', function($scope, $data) {
@@ -17,10 +12,9 @@
   module.controller('MasterController', function($scope, $data) {
     $scope.LISTEDEFLUX = $data.LISTEDEFLUX;
 
-    $scope.showDetail = function(index) {
-      var selectedItem = $data.LISTEDEFLUX[index];
-      $data.selectedItem = selectedItem;
-      $scope.ons.navigator.pushPage('flux1.html');
+    $scope.showDetail = function(item) {
+      $data.selectedItem = item;
+      $scope.ons.navigator.pushPage('flux.html');
     };
 
     $scope.toggleSwitch = function(index) {

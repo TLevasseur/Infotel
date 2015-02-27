@@ -35,7 +35,7 @@
       </ons-toolbar>
 
       <ons-list ng-controller="MasterController">
-        <ons-list-item modifier="chevron" class="item" ng-repeat="item in LISTEDEFLUX | filter:{ AFFICHER: 'true'}" ng-click="showDetail($index)">
+        <ons-list-item modifier="chevron" class="item" ng-repeat="item in LISTEDEFLUX | filter:{ AFFICHER: 'true'}" ng-click="showDetail(item)">
           <ons-row>
             <ons-col width="60px">
               <div class="item-thum"></div>
@@ -51,7 +51,7 @@
     </ons-page>
   </ons-navigator>
 
-  <ons-template id="flux1.html">
+  <ons-template id="flux.html">
     <ons-page ng-controller="DetailController">
       <!--Barre de navigation-->
       <ons-toolbar>
