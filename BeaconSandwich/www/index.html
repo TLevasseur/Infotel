@@ -23,7 +23,7 @@
   </script>
 </head>
 
-<body ng-controller="AppController">
+<body onload="app.onLoad();" ng-controller="AppController">
 
   <ons-navigator title="Navigator" var="myNavigator">
     <ons-page>
@@ -35,7 +35,7 @@
       </ons-toolbar>
 
       <ons-list ng-controller="MasterController">
-        <ons-list-item modifier="chevron" class="item" ng-repeat="item in LISTEDEFLUX | filter:{ AFFICHER: 'true'}" ng-click="showDetail(item)">
+        <ons-list-item modifier="chevron" class="item" ng-repeat="item in LISTEDEFLUX | filter:{ AFFICHER: 'true'} | orderBy:NOM" ng-click="showDetail(item)">
           <ons-row>
             <ons-col width="60px">
               <div class="item-thum"></div>
@@ -91,9 +91,9 @@
       <!--Liste des flux proposés-->
       <div style="text-align: top; margin-top: 10px;">
         <ons-list modifier="inset" class="settings-list">
-        <ons-list-item modifier="tappable" class="item" ng-repeat="item in LISTEDEFLUX">
+        <ons-list-item modifier="tappable" class="item" ng-repeat="item in LISTEDEFLUX | orderBy:NOM">
           <label class="checkbox checkbox--list-item fluxCheckbox">
-            <input type="checkbox" ng-click="toggleSwitch($index)" ng-checked={{item.AFFICHER}}>
+            <input type="checkbox" ng-click="toggleSwitch(item)" ng-checked={{item.AFFICHER}}>
             <div class="checkbox__checkmark checkbox--list-item__checkmark"></div>
             {{item.NOM}}
           </label>

@@ -17,31 +17,119 @@
       $scope.ons.navigator.pushPage('flux.html');
     };
 
-    $scope.toggleSwitch = function(index) {
-      $data.LISTEDEFLUX[index].AFFICHER = $data.LISTEDEFLUX[index].AFFICHER ? false : true ;
+    $scope.toggleSwitch = function(item) {
+      item.AFFICHER = item.AFFICHER ? false : true ;
     };
 
   });
 
   module.factory('$data', function() {
+    alert('in factory');
     var data = dataDuFabuleuxMondeDInternet();
-      return data;
-    });
+    return data;
+  });
 })();
 
-//      <!--Récupération des flux cochés-->
-//      <script>
-//        var checkedValue = [];
-//        var inputElements = document.getElementsByClassName('fluxCheckbox');
-//        for(var i=0; inputElements[i]; ++i){
-//          if(inputElements[i].checked){
-//            checkedValue[i] = inputElements[i].value;
-//            break;
-//          }
-//        }
-//      </script>
+alert('avant beacons');
+////////////////////////////////////////////////////////////////////////////////
+//
+//
+//                                 BEACONS
+//
+//
+////////////////////////////////////////////////////////////////////////////////
+var app = (function(){
+  // Enable bluetooth on android
+  alert('avant bluetooth');
+  //cordova.plugins.locationManager.isBluetoothEnabled()
+  //  .then(function(isEnabled){
+  //    if (!isEnabled) {
+  //      cordova.plugins.locationManager.enableBluetooth();
+  //    }
+  //  })
+  //  .fail(console.error)
+  //  .done();
 
+  alert('après bluetooth');
+  // Application object
+  var app = {};
 
+  // Beacon 128bit UUIDs
+  var regions =
+  [
+    {uuid:'ABC00000-0000-0000-0000-000000000000'}
+  ];
+
+  // Dictionary of beacons
+  var beacons = {};
+
+  // Timer that displays list of beacons
+  var updateTimer = null;
+
+  app.onLoad = function(){
+    alert('dans onload');
+    document.addEventListener('deviceready', onDeviceReady, false);
+    alert('après onload');
+  };
+
+  function onDeviceReady(){
+    alert('dans onDeviceReady');
+    // Specify a shortcut for the location manager holding the iBeacon functions.
+    window.locationManager = cordova.plugins.locationManager;
+
+    // Start scanning periodically
+    updateTimer = setInterval(startScan, 20000);
+  }
+
+  function startScan(){
+  // The delegate object holds the iBeacon callback functions specified below.
+  var delegate = new locationManager.Delegate();
+
+  // Called continuously when monitoring beacons
+  delegate.didStartMonitoringForRegion = function (pluginResult) {
+    alert('started monitoring');
+    var id = pluginresult[region][identifier];
+    alert('id '+id);
+    var uuid = pluginresult[region][uuid];
+    alert('uuid '+uuid);
+    var beacon = {id:id,uuid:uuid,timestamp:Date.now()};
+    if(beacons.indexOf(beacon)<0){
+      alert('premiere insertion du beacon dans le dictionnaire');
+      beacons.push(beacon);
+    } else {
+      alert('parcours de la liste de beacons');
+      for(var beaconTemp in beacons){
+        if((beaconTemp.id==id) & (beaconTemp.uuid==uuid) & (beaconTemp.timestamp+6000<Date.now())){
+          beaconsTemp = beacon;
+          alert('Mise à jour des annonces conseillée');
+        }
+      }
+    }
+  }
+
+  // Called continuously when ranging beacons (considers proximity)
+  //delegate.didRangeBeaconsInRegion = function (pluginResult) {
+  //};
+
+  // Set the delegate object to use
+  alert('set delegate');
+  locationManager.setDelegate(delegate);
+
+  // Start monitoring and ranging beacons
+  for (var i in regions){
+    var beaconRegion = new locationManager.BeaconRegion(i,regions[i].uuid);
+
+    // Start monitoring.
+    locationManager.startMonitoringForRegion(beaconRegion).fail(console.error).done();
+
+    // Start ranging.
+    //locationManager.startRangingBeaconsInRegion(beaconRegion).fail(console.error).done();
+    }
+  }
+  return app;
+})();
+
+alert('avant thibaud');
 /////////////////////////////////////////////////////////////////////////////////
 //
 //
@@ -56,16 +144,10 @@
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
 //stockage dégeu parce que fuck you
 //Merci de ne pas me les piquer et de bien changer vos noms à vous !
 var DATAS;
 var AjaxCaching = false;
-
-
 
 //fonction pricipales
 //A appeller dès qu'on veux refresh les datas !
@@ -90,9 +172,6 @@ function dataDuFabuleuxMondeDInternet(){
         return DATAS;
 
 }
-
-
-
 
 //Code pour récupérer le petit fichier XML sur le serveur.
 //Fonction qui crée des requettes propres quand on a besoin !
@@ -133,8 +212,6 @@ function createXHR() {
     return xhrObj;
 }
 
-
-
 //fonction qui fais des chauses qui nous interesse bien
 function retrieve(url){
     var storage = document.getElementById("storage");
@@ -160,19 +237,8 @@ function retrieve(url){
     xhr.send(null);
 }
 
-
-
-
-
-
-
 //Le code d'interprétation de ce qu'on a obtenu avec les méthodes du dessus
 //création des différents objets et instanciation à la volée
-
-
-
-
-
 
 //Méthodes constructeur pour la sérialisation XML vers objet
 function listeFlux(){
