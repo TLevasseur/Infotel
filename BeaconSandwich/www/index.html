@@ -92,7 +92,7 @@
       <div style="text-align: top; margin-top: 10px;">
         <ons-list modifier="inset" class="settings-list">
         <ons-list-item modifier="tappable" class="item" ng-repeat="item in LISTEDEFLUX | orderBy:NOM">
-          <label class="checkbox checkbox--list-item fluxCheckbox">
+          <label class="checkbox checkbox--list-item">
             <input type="checkbox" ng-click="toggleSwitch(item)" ng-checked={{item.AFFICHER}}>
             <div class="checkbox__checkmark checkbox--list-item__checkmark"></div>
             {{item.NOM}}
