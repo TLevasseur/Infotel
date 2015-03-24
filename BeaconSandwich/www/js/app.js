@@ -1,19 +1,90 @@
 (function(){
   'use strict';
-  var module = angular.module('app', ['onsen']);
+  var app = angular.module('app', ['onsen']);
 
-  module.controller('AppController', function($scope, $data) {
+  app.controller('AppController', function($scope, $data) {
+    var onLoad = function(){
+      document.addEventListener('deviceready', onDeviceReady, false);
+    };
+
+    var onDeviceReady = function(){
+      alert('dans onDeviceReady');
+      activateBluetooth();
+      window.locationManager = cordova.plugins.locationManager;
+      startScan();
+    };
+
+    var activateBluetooth = function(){
+      // Enable bluetooth on android
+      alert('avant bluetooth');
+      cordova.plugins.locationManager.isBluetoothEnabled().then(function(isEnabled){
+        if (!isEnabled) {
+          cordova.plugins.locationManager.enableBluetooth();
+        }
+      })
+      .fail(console.error)
+      .done();
+      alert('après bluetooth');
+    }
+
+    var startScan = function(){
+      alert("dans startscan");
+      // The delegate object holds the iBeacon callback functions specified below.
+      var delegate = new locationManager.Delegate();
+
+      // Called continuously when monitoring beacons
+      delegate.didStartMonitoringForRegion = function (pluginResult) {
+        alert('started monitoring');
+        alert(JSON.stringify(pluginResult));
+        alert(pluginResult.region.uuid);
+        var key = pluginResult.region.uuid.toUpperCase();
+        alert(key);
+        alert(!({uuid:key} in $data.beacons));
+        $.ajax({url: 'http://www.timeapi.org/utc/now?\m/\d/\Y+\H:\M+\p',dataType: 'jsonp'}).done(function (response) {
+            alert("dans response");
+           alert(response.dateString);
+        });
+
+        timeStamp = (new Date()).toLocaleFormat("%A, %B %e, %Y");
+        alert(timeStamp);
+
+        // Gestion des historiques de rencontre de beacon
+        if(!({uuid:key} in $data.beacons)){
+          // Si le beacon n'a jamais été lu
+          alert("premiere rencontre");
+          $data.beacons[key] = timeStamp;
+          $data.data = dataDuFabuleuxMondeDInternet();
+        } else {
+          // Si la lecture est périmée, mettre à jour le timeStamp
+          if($data.beacons[key]+8400000<timeStamp){
+            alert("maj");
+            $data.beacons[key] = timeStamp;
+            $data.data = dataDuFabuleuxMondeDInternet();
+          }
+        }
+      };
+
+      // Set the delegate object to use
+      alert('set delegate');
+      locationManager.setDelegate(delegate);
+
+      // Start monitoring and ranging beacons
+      for (var i in $data.regions){
+        var beaconRegion = new locationManager.BeaconRegion(i,$data.regions[i].uuid);
+
+        // Start monitoring.
+        locationManager.startMonitoringForRegion(beaconRegion).fail(console.error).done();
+      }
+    };
+
+    onLoad();
   });
 
-  module.controller('DetailController', function($scope, $data) {
-    $scope.item = $data.selectedItem;
-  });
-
-  module.controller('MasterController', function($scope, $data) {
-    $scope.LISTEDEFLUX = $data.LISTEDEFLUX;
+  app.controller('MasterController', function($scope, $data) {
+    $scope.LISTEDEFLUX = $data.data.LISTEDEFLUX;
 
     $scope.showDetail = function(item) {
-      $data.selectedItem = item;
+      $data.data.selectedItem = item;
       $scope.ons.navigator.pushPage('flux.html');
     };
 
@@ -23,113 +94,19 @@
 
   });
 
-  module.factory('$data', function() {
-    alert('in factory');
-    var data = dataDuFabuleuxMondeDInternet();
-    return data;
+  app.controller('DetailController', function($scope, $data) {
+    $scope.item = $data.data.selectedItem;
+  });
+
+  app.factory('$data', function() {
+    this.data = {};
+    this.beacons = {};
+    this.regions = [{uuid:'ABC00000-0000-0000-0000-000000000000'}];
+    return this;
   });
 })();
 
-alert('avant beacons');
-////////////////////////////////////////////////////////////////////////////////
-//
-//
-//                                 BEACONS
-//
-//
-////////////////////////////////////////////////////////////////////////////////
-var app = (function(){
-  // Enable bluetooth on android
-  alert('avant bluetooth');
-  //cordova.plugins.locationManager.isBluetoothEnabled()
-  //  .then(function(isEnabled){
-  //    if (!isEnabled) {
-  //      cordova.plugins.locationManager.enableBluetooth();
-  //    }
-  //  })
-  //  .fail(console.error)
-  //  .done();
 
-  alert('après bluetooth');
-  // Application object
-  var app = {};
-
-  // Beacon 128bit UUIDs
-  var regions =
-  [
-    {uuid:'ABC00000-0000-0000-0000-000000000000'}
-  ];
-
-  // Dictionary of beacons
-  var beacons = {};
-
-  // Timer that displays list of beacons
-  var updateTimer = null;
-
-  app.onLoad = function(){
-    alert('dans onload');
-    document.addEventListener('deviceready', onDeviceReady, false);
-    alert('après onload');
-  };
-
-  function onDeviceReady(){
-    alert('dans onDeviceReady');
-    // Specify a shortcut for the location manager holding the iBeacon functions.
-    window.locationManager = cordova.plugins.locationManager;
-
-    // Start scanning periodically
-    updateTimer = setInterval(startScan, 20000);
-  }
-
-  function startScan(){
-  // The delegate object holds the iBeacon callback functions specified below.
-  var delegate = new locationManager.Delegate();
-
-  // Called continuously when monitoring beacons
-  delegate.didStartMonitoringForRegion = function (pluginResult) {
-    alert('started monitoring');
-    var id = pluginresult[region][identifier];
-    alert('id '+id);
-    var uuid = pluginresult[region][uuid];
-    alert('uuid '+uuid);
-    var beacon = {id:id,uuid:uuid,timestamp:Date.now()};
-    if(beacons.indexOf(beacon)<0){
-      alert('premiere insertion du beacon dans le dictionnaire');
-      beacons.push(beacon);
-    } else {
-      alert('parcours de la liste de beacons');
-      for(var beaconTemp in beacons){
-        if((beaconTemp.id==id) & (beaconTemp.uuid==uuid) & (beaconTemp.timestamp+6000<Date.now())){
-          beaconsTemp = beacon;
-          alert('Mise à jour des annonces conseillée');
-        }
-      }
-    }
-  }
-
-  // Called continuously when ranging beacons (considers proximity)
-  //delegate.didRangeBeaconsInRegion = function (pluginResult) {
-  //};
-
-  // Set the delegate object to use
-  alert('set delegate');
-  locationManager.setDelegate(delegate);
-
-  // Start monitoring and ranging beacons
-  for (var i in regions){
-    var beaconRegion = new locationManager.BeaconRegion(i,regions[i].uuid);
-
-    // Start monitoring.
-    locationManager.startMonitoringForRegion(beaconRegion).fail(console.error).done();
-
-    // Start ranging.
-    //locationManager.startRangingBeaconsInRegion(beaconRegion).fail(console.error).done();
-    }
-  }
-  return app;
-})();
-
-alert('avant thibaud');
 /////////////////////////////////////////////////////////////////////////////////
 //
 //
