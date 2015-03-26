@@ -1,0 +1,29 @@
+
+CREATE TABLE 'utilisateur'{
+	id INT
+}
+
+
+
+
+CREATE TABLE 'flux'
+{
+	id INT PRIMARY KEY NOT NULL,
+	nom VARCHAR(100)
+}
+
+CREATE TABLE 'message'
+{
+	id INT PRIMARY KEY NOT NULL,
+	source INT,
+	titre VARCHAR(100),
+	date_evenement DATE,
+	uid INT,
+	
+}
+
+
+INSERT INTO `beaconsandwich`.`flux` (`id`, `nom`) VALUES ('1', 'Les annonces du Bde');
+INSERT INTO `beaconsandwich`.`flux` (`id`, `nom`) VALUES ('2', 'Menu de la Cantine');
+INSERT INTO `beaconsandwich`.`flux` (`id`, `nom`) VALUES ('3', 'Absence de personnel');
+INSERT INTO `beaconsandwich`.`flux` (`id`, `nom`) VALUES ('4', 'Actu Beacon Sandwich');
