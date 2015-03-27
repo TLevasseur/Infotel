@@ -20,7 +20,6 @@
 </head>
 
 <body ng-controller="AppController">
-
   <ons-navigator title="Navigator" var="myNavigator">
     <ons-page>
       <ons-toolbar>
@@ -56,7 +55,7 @@
       </ons-toolbar>
 
 
-      <ons-list modifier="inset" ng-repeat="msg in item.LISTEDEMESSAGES" style="margin-top: 10px">
+      <ons-list modifier="inset" ng-repeat="msg in item.LISTEDEMESSAGES | orderBy:DATE" style="margin-top: 10px">
         <ons-list-item class="item">
           <ons-row>
             <ons-col width="60px">
