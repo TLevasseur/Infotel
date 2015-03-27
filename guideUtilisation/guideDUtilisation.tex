@@ -86,76 +86,93 @@ Le fichier utilisé pour les exemples de ce manuel est disponible en annexe et p
 
 \section*{Exemple de fichier \texttt{xml} de définition d'informations}
 \begin{verbatim}
-<LISTEDEFLUX>
+<listedeflux>
 
-	<FLUX>
-		<NOM>Les annonces du BDE</NOM>
-		<LISTEDEMESSAGES>
+	<flux>
+		<nom>Les annonces du Bde</nom>
+		<listedemessages>
 
-			<MESSAGE>
-				<SOURCE>Pole communication</SOURCE> <TITRE>Construction d'une fontaine de chocolat</TITRE> 
-				<DATE>07/09/2015</DATE><UID>00002</UID>
-				<INFOS>
+			<message>
+				<source>Pole communication</source> <titre>Construction d'une fontaine de chocolat</titre> <date>07/09/2015</date><uuid>ABC00000-0000-0000-0000-000000000000</uuid>
+				<infos>
 					Bonjour
-					Suite à la recette exceptionnelle de cette année, nous allons construire une 
-					fontaine de chocolat en septembre.
-				</INFOS>
-			</MESSAGE>
+					Suite à la recette exceptionnelle de cette année, nous allons construire une fontaine de chocolat en septembre.
+				</infos>
+				<priorite>
+					1
+				</priorite>
+			</message>
 
-			<MESSAGE>
-				<SOURCE>Direction</SOURCE> <TITRE>Faillite</TITRE> 
-				<DATE>03/03/2015</DATE><UID>00002</UID>
-				<INFOS>
+			<message>
+				<source>Direction</source> <titre>Faillite</titre> <date>03/03/2015</date><uuid>ABC00000-0000-0000-0000-000000000000</uuid>
+				<infos>
 					Bonjour
-					Le BDE est à la rue depuis un mois.
-				</INFOS>
-			</MESSAGE>
+					Le Bde est à la rue depuis un mois.
+				</infos>
+				<priorite>
+					2
+				</priorite>
+			</message>
+			<message>
+				<source>Thibaud</source> <titre>Nouveau Pharaon</titre> <date>27/03/2015</date><uuid>ABC00000-0000-0000-0000-000000000000</uuid>
+				<infos>
+					Je suis le représentant de Horus sur terre et le nouveau pharaon du BDE.
+				</infos>
+				<priorite>
+					2
+				</priorite>
+			</message>
+		</listedemessages>
+	</flux>
 
-		</LISTEDEMESSAGES>
-	</FLUX>
+	<flux>
+		<nom>Menu de la Cantine</nom>
+		<listedemessages>
 
-	<FLUX>
-		<NOM>Menu de la Cantine</NOM>
-		<LISTEDEMESSAGES>
-
-			<MESSAGE>
-				<SOURCE>Monique de la cuisine</SOURCE> <TITRE>Menu de demain</TITRE> 
-				<DATE>07/02/2015</DATE> <UID>00001</UID>
-				<INFOS>
+			<message>
+				<source>Monique de la cuisine</source> <titre>Menu de demain</titre> <date>07/02/2015</date> <uuid>ABCD0000-0000-0000-0000-000000000000</uuid>
+				<infos>
 					Bonjour
 					Ce mardi, nous aurons pour déjeuner du poulet aux olives.
-				</INFOS>
-			</MESSAGE>
+				</infos>
+				<priorite>
+					1
+				</priorite>
+			</message>
 
-			<MESSAGE>
-				<SOURCE>Monique de la cuisine</SOURCE> <TITRE>Menu de ce midi</TITRE> 
-				<DATE>02/03/2015</DATE> <UID>00001</UID>
-				<INFOS>
+			<message>
+				<source>Monique de la cuisine</source> <titre>Menu de ce midi</titre> <date>02/03/2015</date> <uuid>ABCD0000-0000-0000-0000-000000000000</uuid>
+				<infos>
 					Bonjour
 					Ce lundi, nous aurons pour déjeuner du boudain noir.
-				</INFOS>
-			</MESSAGE>
+				</infos>
+				<priorite>
+					1
+				</priorite>
+			</message>
 
-		</LISTEDEMESSAGES>
-	</FLUX>
+		</listedemessages>
+	</flux>
 
-	<FLUX>
-		<NOM>Absence de personnel</NOM>
-		<LISTEDEMESSAGES>
+	<flux>
+		<nom>Absence de personnel</nom>
+		<listedemessages>
 
-			<MESSAGE>
-				<SOURCE>Secrétariat</SOURCE> <TITRE>Absence de Mme Dupond</TITRE> 
-				<DATE>07/02/2015</DATE> <UID>00002</UID>
-				<INFOS>
+			<message>
+				<source>Secrétariat</source> <titre>Absence de Mme Dupond</titre> <date>07/02/2015</date> <uuid>00002</uuid>
+				<infos>
 					Bonjour
 					Mme Dupond sera absente aujourd'hui.
-				</INFOS>
-			</MESSAGE>
+				</infos>
+				<priorite>
+					1
+				</priorite>
+			</message>
 
-		</LISTEDEMESSAGES>
-	</FLUX>
+		</listedemessages>
+	</flux>
+</listedeflux>
 
-</LISTEDEFLUX>
 \end{verbatim}
 
 \end{document}
