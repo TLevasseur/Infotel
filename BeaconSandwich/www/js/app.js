@@ -4,16 +4,23 @@
 
   app.controller('AppController', function($scope, $data) {
     var onLoad = function(){
-      document.addEventListener('offline', function(){ alert("Vous êtes déconnecté, veuillez activer votre connexion internet.");}, false);
-      document.addEventListener('online', function(){ $data.setData();}, false);
       document.addEventListener('deviceready', onDeviceReady, false);
       $data.setData();
     };
 
     var onDeviceReady = function(){
-      activateBluetooth();
-      window.locationManager = cordova.plugins.locationManager;
-      startScan();
+    // Check internet connection
+    document.addEventListener('offline', function(){ alert("Vous êtes déconnecté, veuillez activer votre connexion internet.");}, false);
+    document.addEventListener('online', function(){ $data.setData();}, false);
+    // Android customization
+    cordova.plugins.backgroundMode.setDefaults({ text:'A l\'affut de nouveautés !'});
+    // Enable background mode
+    cordova.plugins.backgroundMode.enable();
+    // Activate bluetooth
+    activateBluetooth();
+    // Activate BLE scan
+    window.locationManager = cordova.plugins.locationManager;
+    startScan();
     };
 
     var activateBluetooth = function(){
