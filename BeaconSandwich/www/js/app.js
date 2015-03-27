@@ -4,11 +4,12 @@
 
   app.controller('AppController', function($scope, $data) {
     var onLoad = function(){
+      document.addEventListener('offline', function(){ alert("Vous êtes déconnecté, veuillez activer votre connexion internet.");  $data.setData();}, false);
       document.addEventListener('deviceready', onDeviceReady, false);
+      $data.setData();
     };
 
     var onDeviceReady = function(){
-      alert('dans onDeviceReady');
       activateBluetooth();
       window.locationManager = cordova.plugins.locationManager;
       startScan();
@@ -16,7 +17,6 @@
 
     var activateBluetooth = function(){
       // Enable bluetooth on android
-      alert('avant bluetooth');
       cordova.plugins.locationManager.isBluetoothEnabled().then(function(isEnabled){
         if (!isEnabled) {
           cordova.plugins.locationManager.enableBluetooth();
@@ -24,48 +24,37 @@
       })
       .fail(console.error)
       .done();
-      alert('après bluetooth');
     }
 
     var startScan = function(){
-      alert("dans startscan");
       // The delegate object holds the iBeacon callback functions specified below.
       var delegate = new locationManager.Delegate();
 
       // Called continuously when monitoring beacons
       delegate.didStartMonitoringForRegion = function (pluginResult) {
-        alert('started monitoring');
-        alert(JSON.stringify(pluginResult));
-        alert(pluginResult.region.uuid);
         var key = pluginResult.region.uuid.toUpperCase();
-        alert(key);
-        alert(!({uuid:key} in $data.beacons));
-        $.ajax({url: 'http://www.timeapi.org/utc/now?\m/\d/\Y+\H:\M+\p',dataType: 'jsonp'}).done(function (response) {
-            alert("dans response");
-           alert(response.dateString);
+        var timeStamp = {};
+        $.ajax({url: 'http://www.timeapi.org/utc/now.json?format=%25Y:%25m:%25d:%25H;',dataType: 'jsonp'}).done(function (response) {
+           timeStamp = response.dateString.split(":");
         });
 
-        timeStamp = (new Date()).toLocaleFormat("%A, %B %e, %Y");
-        alert(timeStamp);
-
         // Gestion des historiques de rencontre de beacon
-        if(!({uuid:key} in $data.beacons)){
+        if(!($data.beacons.indexOf({uuid:key})==1)){
           // Si le beacon n'a jamais été lu
-          alert("premiere rencontre");
           $data.beacons[key] = timeStamp;
-          $data.data = dataDuFabuleuxMondeDInternet();
+          $data.setData();
+          alert('maj '+key);
         } else {
           // Si la lecture est périmée, mettre à jour le timeStamp
-          if($data.beacons[key]+8400000<timeStamp){
-            alert("maj");
+          if(compareDate($data.beacons[key],timeStamp)){
+            alert("maj deuxième rencontre");
             $data.beacons[key] = timeStamp;
-            $data.data = dataDuFabuleuxMondeDInternet();
+            $data.setData();
           }
         }
       };
 
       // Set the delegate object to use
-      alert('set delegate');
       locationManager.setDelegate(delegate);
 
       // Start monitoring and ranging beacons
@@ -82,6 +71,12 @@
 
   app.controller('MasterController', function($scope, $data) {
     $scope.LISTEDEFLUX = $data.data.LISTEDEFLUX;
+
+    $scope.$watch(function () { return $data.data.LISTEDEFLUX }, function (newVal, oldVal) {
+        if (typeof newVal !== 'undefined') {
+            $scope.LISTEDEFLUX = newVal;
+        }
+    });
 
     $scope.showDetail = function(item) {
       $data.data.selectedItem = item;
@@ -101,11 +96,43 @@
   app.factory('$data', function() {
     this.data = {};
     this.beacons = {};
-    this.regions = [{uuid:'ABC00000-0000-0000-0000-000000000000'}];
+    this.regions = [{uuid:'ABC00000-0000-0000-0000-000000000000'},{uuid:'ABCD0000-0000-0000-0000-000000000000'},{uuid:'ABCDE000-0000-0000-0000-000000000000'},{uuid:'ABCDEF00-0000-0000-0000-000000000000'}];
+    this.setData = function(){
+        this.data = dataDuFabuleuxMondeDInternet();
+    };
     return this;
   });
 })();
 
+compareDate = function(date1,date2) {
+    Y1 = date1[1];
+    M1 = date1[2];
+    d1 = date1[3];
+    h1 = date1[4];
+    Y2 = date2[1];
+    M2 = date2[2];
+    d2 = date2[3];
+    h2 = date2[4];
+
+    if(Y2>Y1){
+        return true;
+    } else {
+        if(M2>m1){
+            return true;
+        }else{
+            if(d2>d1){
+                return true;
+            }else{
+                // écart de deux heures
+                if(h2>h1+2){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }
+    }
+};
 
 /////////////////////////////////////////////////////////////////////////////////
 //
@@ -234,8 +261,8 @@ function flux(nom){
 }
 
 
-function message(source, titre, date, uid, infos){
-    return {TITRE:titre, DATE:date, SOURCE:source, UID:uid, INFOS:infos};
+function message(source, titre, date, uuid, infos, priorite){
+    return {TITRE:titre, DATE:date, SOURCE:source, UUID:uuid, INFOS:infos, PRIORITE:priorite};
 }
 
 
@@ -254,11 +281,11 @@ function dataFromXML(xml){
             var source=laListeDesMessages[j].getElementsByTagName("source").item(0).firstChild.data;
             var titre=laListeDesMessages[j].getElementsByTagName("titre").item(0).firstChild.data;
             var date=laListeDesMessages[j].getElementsByTagName("date").item(0).firstChild.data;
-            var uid=laListeDesMessages[j].getElementsByTagName("uid").item(0).firstChild.data;
+            var uuid=laListeDesMessages[j].getElementsByTagName("uuid").item(0).firstChild.data;
             var infos=laListeDesMessages[j].getElementsByTagName("infos").item(0).firstChild.data;
+            var priorite=laListeDesMessages[j].getElementsByTagName("priorite").item(0).firstChild.data;
 
-
-            unFlux.ajouterMessage(message(source,titre,date,uid,infos));
+            unFlux.ajouterMessage(message(source,titre,date,uuid,infos,priorite));
         };
         laListeDesFlux.ajouterflux(unFlux);
     };
