@@ -13,14 +13,6 @@
 \maketitle
 \tableofcontents
 
-\chapter{Première utilisation}
-
-L'application BeaconSandwich ne contient pas encore d'informations lors de son premier lancement.
-
-Pour récupérer ces informations et pouvoir utiliser l'application, il est nécessaire de passer à porté d'un Beacon associé au programme tout en ayant la fonctionnalité Bluetooth de son appareil activé. 
-
-Lorsque l'application détecte le Beacon, elle télécharge automatiquement les flux d'information associés à cette balise. L'ensemble des informations accessibles via ce Beacon sont alors disponibles.
-
 \chapter{Naviguer dans l'application}
 
 \section{Page d'accueil}
@@ -37,7 +29,7 @@ Sélectionner une catégorie permet d'afficher les détails et l'ensemble des me
 
 \section{Détails d'une catégorie}
 
-Chaque catégorie possède sa propre page avec l'ensemble des messages postés sur l'application. Ces messages sont les communications associés à la catégorie qui ont étés pérédement déposés par d'autres utilisateurs de l'application. Ils peuvent provenir de différentes sources et de dates différentes. 
+Chaque catégorie possède sa propre page avec l'ensemble des messages postés sur l'application. Ces messages sont les communications associés à la catégorie qui ont étés pérédement déposés par d'autres utilisateurs de l'application. Ils peuvent provenir de différentes sources et de dates différentes. Ces messages sont triés par ordre antéchronologique.
 
 Un bouton \texttt{Retour} permet de revenir à la page d'accueil.
 
@@ -49,8 +41,10 @@ Un bouton \texttt{Retour} permet de revenir à la page d'accueil.
 
 \section{Paramétrage de l'application}
 
+
 Il est possible de paramétrer les catégories à afficher depuis l'accueil, par la sélection du bouton: \includegraphics[scale=0.4]{boutonParam.png}. Un menu affichant l'ensemble des catégories disponibles apparait. Il est alors possible de sélectionner les catégories à afficher à l'écran d'accueil.
 
+\paragraph{}
 Un bouton \texttt{Retour} permet de revenir à la page d'accueil.
 
 
@@ -69,17 +63,21 @@ Un bouton \texttt{Retour} permet de revenir à la page d'accueil.
 \chapter{Gestion des flux d'information}
 
 \section{Avant propos}
-
-Les catégories ainsi que les messages associés sont téléchargés dans l'application depuis un serveur en ligne associé au Beacon à portée. 
-
-C'est à dire que chacun peut, à l'aide d'un Beacon et d'un serveur, ajouter des informations que l'application affichera lorsqu'elle reconnaîtra la balise.
+\paragraph{}
+Les catégories ainsi que les messages associés sont téléchargés dans l'application depuis un serveur en ligne qui renvoit un fichier xml. Ce fichier peut être écrasé et 
 
 \section{Ajouter des informations}
-
-Les catégories, ainsi que les messages sont stockées dans un fichier \texttt{xml} sur le serveur puis interprétées et enregistrées dans l'application. Chaque Beacon est donc lié à une page internet permettant le téléchargement d'un fichier de données.
+\paragraph{}
+Les catégories, ainsi que les messages sont stockées dans un fichier \texttt{xml} sur le serveur puis interprétées et enregistrées dans l'application.
 Ce fichier \texttt{xml} est téléchargé depuis le serveur dès la détection du Beacon par l'application.
 
+\paragraph{}
 Le fichier utilisé pour les exemples de ce manuel est disponible en annexe et peut servir de modèle pour la structure d'un autre fichier \texttt{xml} de stockage de données.
+
+Lors de l'ajout de donnée, il sera nécessaire de modifier le fichier existant où de l'écraser.
+
+\paragraph{}
+Ce fichier est pour l'instant à écrire à la main. Une application pourra être dévellopée afin de faciliter la création de ce fichier.
 
 
 \chapter{Annexe}

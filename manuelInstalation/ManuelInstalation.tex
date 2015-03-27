@@ -1,0 +1,102 @@
+ \documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage[frenchb]{babel}
+\usepackage{graphicx}
+\usepackage{verbatim}
+
+\title{\textbf{BeaconSandwich} \\ Guide d'utilisation}
+\author{Elisoa Ramarokoto \and Thibaud Levasseur \and Guillaume Minette de Saint Martin }
+\date{Mars 2015}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\chapter{Application}
+
+\section{Modification des accès aux ressources}
+L'accès aux ressources sur le serveur distant se fait grâce aux requettes ajax vers le serveur distant. L'adresse est défini dans le fichier app.js par les variables suivantes :
+\begin{verbatim}
+    var script = "http://levasseur.tf/beaconsandwich/flux.php";
+    var filename = "http://levasseur.tf/beaconsandwich/flux.xml";
+\end{verbatim}
+
+Les images sont récupérés à la volée et l'adresse des ressources est à modifier dans le fichier index.html :
+\begin{verbatim}
+    <img src="http://levasseur.tf/beaconsandwich/ressources/{{item.NOM}}.png" alt="coucou" style="width:50px;height:50px">
+	<img src="http://levasseur.tf/beaconsandwich/ressources/{{msg.SOURCE}}.png" alt="coucou" style="width:50px;height:50px">
+\end{verbatim}
+
+\section{Compilation du projet}
+
+
+\section{Installation}
+
+\chapter{Serveur Web}
+
+\section{Description de l'arborescence }
+Sur le serveur doivent être déposés un dossier "ressources" contenant les diverses images de l'application et 2 fichiers :
+\begin{itemize}
+	\item flux.php
+	\item flux.xml
+\end{itemize}
+
+\section{flux.xml et fLux.php}
+
+\subsection{flux.xml}
+Les données sont déposées sur le serveur sous la forme d'un fichier "flux.xml". Ces données doivent être de la forme :
+
+\begin{verbatim}
+<listedeflux>
+	<flux>
+		<nom></nom>
+		
+		<listedemessages>
+		
+			<message>
+				<source></source>
+				<titre></titre>
+				<date></date>
+				<uuid></uuid>
+				<infos></infos>
+				<priorite></priorite>
+			</message>
+			
+			<message>
+				...
+			</message>
+
+			<message>
+				...
+			</message>
+
+		</listedemessages>
+	</flux>
+
+	<flux>
+		...
+	</flux>
+
+</listedeflux>
+\end{verbatim}
+
+\subsection{flux.php}
+Ce fichier permet à l'application d'acceder aux données issues du fichier flux.xml par ajax.
+
+\section{le dossier ressources}
+Ce dossier contient toutes les images qui seront nécessaire à l'affichages des icones au sein de l'application. Elles doivent être nommées comme les noms de flux pour les icones de flux ou comme les sources, auteurs des messages, pour les icones de messages.
+
+\section{Autorisation ajax cross-domain}
+Afin d'autoriser l'accès ajax cross-domain, il sera nécessaire de compléter le fichier .htaccess du serveur avec les lignes suivantes :
+
+\begin{verbatim}
+	Header always set Access-Control-Allow-Origin "*"
+	Header always set Access-Control-Allow-Methods "POST, GET, OPTIONS, DELETE, PUT"
+	Header always set Access-Control-Max-Age "1000"
+	Header always set Access-Control-Allow-Headers "x-requested-with, Content-Type, origin, authorization, accept, client-security-token"
+	 
+	RewriteEngine On
+	RewriteCond %{REQUEST_METHOD} OPTIONS
+	RewriteRule ^(.*)$ $1 [R=200,L]
+\end{verbatim}
