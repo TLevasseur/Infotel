@@ -13,7 +13,7 @@
     document.addEventListener('offline', function(){ alert("Vous êtes déconnecté, veuillez activer votre connexion internet.");}, false);
     document.addEventListener('online', function(){ $data.setData();}, false);
     // Android customization
-    cordova.plugins.backgroundMode.setDefaults({ text:'A l\'affut de nouveautés !'});
+    cordova.plugins.backgroundMode.setDefaults({title:'BeaconSandwich', text:'A l\'affut de nouveautés !'});
     // Enable background mode
     cordova.plugins.backgroundMode.enable();
     // Activate bluetooth
@@ -58,6 +58,9 @@
             alert("maj deuxième rencontre");
             $data.beacons[key] = timeStamp;
             $data.setData();
+            cordova.plugins.backgroundMode.configure({
+                text: 'Nouvelles infos croustillantes !'
+            });
           }
         }
       };
