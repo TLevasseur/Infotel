@@ -5,21 +5,35 @@
 		<listedemessages>
 
 			<message>
-				<source>Pole communication</source> <titre>Construction d'une fontaine de chocolat</titre> <date>07/09/2015</date><uid>00002</uid>
+				<source>Pole communication</source> <titre>Construction d'une fontaine de chocolat</titre> <date>07/09/2015</date><uuid>ABC00000-0000-0000-0000-000000000000</uuid>
 				<infos>
 					Bonjour
 					Suite à la recette exceptionnelle de cette année, nous allons construire une fontaine de chocolat en septembre.
 				</infos>
+				<priorite>
+					1
+				</priorite>
 			</message>
 
 			<message>
-				<source>Direction</source> <titre>Faillite</titre> <date>03/03/2015</date><uid>00002</uid>
+				<source>Direction</source> <titre>Faillite</titre> <date>03/03/2015</date><uuid>ABC00000-0000-0000-0000-000000000000</uuid>
 				<infos>
 					Bonjour
 					Le Bde est à la rue depuis un mois.
 				</infos>
+				<priorite>
+					2
+				</priorite>
 			</message>
-
+			<message>
+				<source>Thibaud</source> <titre>Nouveau Pharaon</titre> <date>27/03/2015</date><uuid>ABC00000-0000-0000-0000-000000000000</uuid>
+				<infos>
+					Je suis le représentant de Horus sur terre et le nouveau pharaon du BDE.
+				</infos>
+				<priorite>
+					2
+				</priorite>
+			</message>
 		</listedemessages>
 	</flux>
 
@@ -28,19 +42,25 @@
 		<listedemessages>
 
 			<message>
-				<source>Monique de la cuisine</source> <titre>Menu de demain</titre> <date>07/02/2015</date> <uid>00001</uid>
+				<source>Monique de la cuisine</source> <titre>Menu de demain</titre> <date>07/02/2015</date> <uuid>ABCD0000-0000-0000-0000-000000000000</uuid>
 				<infos>
 					Bonjour
 					Ce mardi, nous aurons pour déjeuner du poulet aux olives.
 				</infos>
+				<priorite>
+					1
+				</priorite>
 			</message>
 
 			<message>
-				<source>Monique de la cuisine</source> <titre>Menu de ce midi</titre> <date>02/03/2015</date> <uid>00001</uid>
+				<source>Monique de la cuisine</source> <titre>Menu de ce midi</titre> <date>02/03/2015</date> <uuid>ABCD0000-0000-0000-0000-000000000000</uuid>
 				<infos>
 					Bonjour
 					Ce lundi, nous aurons pour déjeuner du boudain noir.
 				</infos>
+				<priorite>
+					1
+				</priorite>
 			</message>
 
 		</listedemessages>
@@ -51,11 +71,14 @@
 		<listedemessages>
 
 			<message>
-				<source>Secrétariat</source> <titre>Absence de Mme Dupond</titre> <date>07/02/2015</date> <uid>00002</uid>
+				<source>Secrétariat</source> <titre>Absence de Mme Dupond</titre> <date>07/02/2015</date> <uuid>00002</uuid>
 				<infos>
 					Bonjour
 					Mme Dupond sera absente aujourd'hui.
 				</infos>
+				<priorite>
+					1
+				</priorite>
 			</message>
 
 		</listedemessages>
@@ -67,16 +90,22 @@
 		<listedemessages>
 
 			<message>
-				<source>Thibaud</source> <titre>Pensée philosophique</titre> <date>16/02/2015</date> <uid>00002</uid>
+				<source>Thibaud</source> <titre>Pensée philosophique</titre> <date>16/02/2015</date> <uuid>ABCDE000-0000-0000-0000-000000000000</uuid>
 				<infos>
 					Le beacon c'est bon.
 				</infos>
+				<priorite>
+					1
+				</priorite>
 			</message>
 			<message>
-				<source>Thibaud</source> <titre>On fait du gros test d'appli</titre> <date>16/02/2015</date> <uid>00002</uid>
+				<source>Thibaud</source> <titre>On fait du gros test d'appli</titre> <date>16/02/2015</date> <uuid>ABCDE000-0000-0000-0000-000000000000</uuid>
 				<infos>
 					Il semblerait que guillaume ait fait du bon boulot après tout.
 				</infos>
+				<priorite>
+					2
+				</priorite>
 			</message>
 
 		</listedemessages>
