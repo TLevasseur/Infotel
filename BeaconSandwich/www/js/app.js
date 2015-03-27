@@ -4,7 +4,8 @@
 
   app.controller('AppController', function($scope, $data) {
     var onLoad = function(){
-      document.addEventListener('offline', function(){ alert("Vous êtes déconnecté, veuillez activer votre connexion internet.");  $data.setData();}, false);
+      document.addEventListener('offline', function(){ alert("Vous êtes déconnecté, veuillez activer votre connexion internet.");}, false);
+      document.addEventListener('online', function(){ $data.setData();}, false);
       document.addEventListener('deviceready', onDeviceReady, false);
       $data.setData();
     };
