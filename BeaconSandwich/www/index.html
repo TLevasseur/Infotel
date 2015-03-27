@@ -34,7 +34,7 @@
         <ons-list-item modifier="chevron" class="item" ng-repeat="item in LISTEDEFLUX | filter:{ AFFICHER: 'true'} | orderBy:NOM" ng-click="showDetail(item)">
           <ons-row>
             <ons-col width="60px">
-              <div class="item-thum"></div>
+              <div class="item-thum"><img src="./ressources/{{item.NOM}}.png" alt="some_text" style="width:50px;height:50px"></div>
             </ons-col>
             <ons-col>
               <header>
